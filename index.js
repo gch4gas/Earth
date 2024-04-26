@@ -7,19 +7,22 @@ function showModal() {
     const modalContainer = document.querySelector("#modalContainer");
 
     
+    
     // modalContainer.innerHTML = ""
     btnOpen.addEventListener('click', () => {
-
+        modalContainer.showModal();
+        closeModal();
+        
         const createDescription = (place) => {
             
-        
+            
             const pName = document.createElement("p");
             const pHistory = document.createElement("p");
             const pPopulation = document.createElement("p");
             const pArea = document.createElement("p");
             const pDensity = document.createElement("p");
             const buttonModal = document.createElement("button");
-    
+            
             pName.innerText = place.city;
             pHistory.innerText = place.history;
             pPopulation.innerText = place.population;
@@ -28,28 +31,21 @@ function showModal() {
             
             modalContainer.append(pName,pHistory,pPopulation,pArea,pDensity);
     
-            
+            return modalContainer
         }    
 
-    
-        modalContainer.showModal();
-        
-        closeModal();
-        
-   
-
-    const renderDescription = (arrayPlaces) => {
-
-
-        for(let i = 0; i < arrayPlaces.length; i++) {
-
-            const formDescription = arrayPlaces[i];
-            const description = createDescription(formDescription);
-
+        const renderDescription = (arrayPlaces) => {
+            
+            for(let i = 0; i < arrayPlaces.length; i++) {
+                
+                const formDescription = arrayPlaces[i];
+                const description = createDescription(formDescription);
+                
+            }
             
         }
         
-    }
+
         renderDescription(description);
 
     })

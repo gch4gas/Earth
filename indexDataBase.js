@@ -1,3 +1,0 @@
-import { places } from "./database";
-
-
