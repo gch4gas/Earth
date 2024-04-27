@@ -1,63 +1,50 @@
-import  {placesModal}  from "./databaseModal.js";
+import { placesModal } from "./databaseModal.js";
 
+// function showModal() {
+//     const btnOpen = document.querySelector("#open__Modal");
+//     const modalContainer = document.querySelector("#modalContainer");
+
+//     btnOpen.addEventListener('click', () => {
+//         console.log("oi");
+//         modalContainer.showModal();
+//     });
+// }
+
+// function closeModal() {
+//     const btnClose = document.querySelector("#close__Modal");
+//     const modalContainer = document.querySelector("#modalContainer");
+
+//     btnClose.addEventListener('click', () => {
+//         modalContainer.close();
+//     });
+// }
+
+// showModal();
+// closeModal()
 
 function showModal() {
+    const openModalButtons = document.querySelectorAll(".open__Modal-metropole");
+   
 
-    const btnOpen = document.querySelector("#openModal");
-    const modalContainer = document.querySelector("#modalContainer");
-
-    
-    
-    // modalContainer.innerHTML = ""
-    btnOpen.addEventListener('click', () => {
-        modalContainer.showModal();
-        closeModal();
-        
-        const createDescription = (place) => {
-            
-            
-            const pName = document.createElement("p");
-            const pHistory = document.createElement("p");
-            const pPopulation = document.createElement("p");
-            const pArea = document.createElement("p");
-            const pDensity = document.createElement("p");
-            const buttonModal = document.createElement("button");
-            
-            pName.innerText = place.city;
-            pHistory.innerText = place.history;
-            pPopulation.innerText = place.population;
-            pArea.innerText = place.area;
-            pDensity.innerText = place.density;
-            
-            modalContainer.append(pName,pHistory,pPopulation,pArea,pDensity);
-    
-            return modalContainer
-        }    
-
-        const renderDescription = (arrayPlaces) => {
-            
-            for(let i = 0; i < arrayPlaces.length; i++) {
-                
-                const formDescription = arrayPlaces[i];
-                const description = createDescription(formDescription);
-                
-            }
-            
-        }
-        
-
-        renderDescription(description);
-
-    })
-
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalTarget = button.getAttribute('data-modal-target');
+            const modal = document.querySelector(modalTarget);
+            modal.showModal();
+        });
+    });
 }
 
 function closeModal() {
-    const btnClose = document.querySelector("#closeModal");
-    const modalContainer = document.querySelector("#modalContainer");
+    const closeModalButtons = document.querySelectorAll(".closeModal");
 
-    btnClose.addEventListener('click', () => {
-        modalContainer.close()
-    })
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('dialog');
+            modal.close();
+        });
+    });
 }
+
 showModal();
+closeModal();
